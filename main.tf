@@ -72,7 +72,6 @@ module "alb" {
        }
      }
     }
-   }
   ]
 
   http_tcp_listeners = [
