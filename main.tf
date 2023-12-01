@@ -15,7 +15,7 @@ data "aws_ami" "app_ami" {
 }
 
 data "aws_vpc" "default" {
-default = true
+  default = true
 }
 
 resource "aws_instance" "blog" {
@@ -27,16 +27,14 @@ resource "aws_instance" "blog" {
   }
 }
 
-resource = "aws_security_group" "blog"{
-
+resource "aws_security_group" "blog"{
   name        = "blog"
   description = "Allow http and https in. Allow everything out"
 
   vpc.id      = data.aws_vpc.default.id
-
 }
 
-resource = "aws_security_group_rule" "blog_http_in" {
+resource "aws_security_group_rule" "blog_http_in" {
 
  type        = "Ingress"
  description = "ingress rule for blog_http_in"
@@ -48,7 +46,7 @@ resource = "aws_security_group_rule" "blog_http_in" {
 security_Group_id = aws_security_group.blog.id
 }
 
-resource = "aws_security_group_rule" "blog_https_in" {
+resource "aws_security_group_rule" "blog_https_in" {
 
  type        = "Ingress"
  description = "ingress rule for blog_https_in"
@@ -60,7 +58,7 @@ resource = "aws_security_group_rule" "blog_https_in" {
 security_Group_id = aws_security_group.blog.id
 }
 
-resource = "aws_security_group_rule" "blog_everything_out" {
+resource "aws_security_group_rule" "blog_everything_out" {
 
  type        = "Egress"
  description = "Outbound rule for blog"
