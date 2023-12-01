@@ -62,10 +62,10 @@ module "alb" {
   target_groups = [
     {
       name_prefix      = "blog-"
-      backend_protocol         = "HTTP"
+      backend_protocol = "HTTP"
       backend_port     = 80
       target_type      = "instance"
-      targets = {  
+      targets = {
        my_target = {
         target_id = aws_instance.blog.id
         port = 80
@@ -76,15 +76,15 @@ module "alb" {
 
   http_tcp_listeners = [
     {
-     port = 80
-     protocol = "http"
-     target_group_index = 0
+     port                = 80
+     protocol            = "http"
+     target_group_index  = 0
      }
   ]
- tags = {
-    Environment = "Dev"
-    }
-
+  tags = {
+    Environment = "dev"
+  }
+}
 module "blog_sg" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "5.1.0"
