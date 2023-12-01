@@ -77,14 +77,16 @@ module "alb" {
   http_tcp_listeners = [
     {
      port                = 80
-     protocol            = "http"
+     protocol            = "HTTP"
      target_group_index  = 0
      }
   ]
+  
   tags = {
     Environment = "dev"
   }
 }
+
 module "blog_sg" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "5.1.0"
