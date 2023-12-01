@@ -22,6 +22,7 @@ resource "aws_instance" "blog" {
   ami                    = data.aws_ami.app_ami.id
   instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.blog.id]
+  
   tags = {
     Name = "Learning Terraform"
   }
@@ -41,23 +42,22 @@ resource "aws_security_group_rule" "blog_http_in" {
  protocol    = "tcp"
  cidr_blocks  = ["0.0.0.0/0"]
 
-security_group_id = aws_security_group.blog.id
+ security_group_id = aws_security_group.blog.id
 }
 
 resource "aws_security_group_rule" "blog_https_in" {
 
- type        = "ingress"
- description = "ingress rule for blog_https_in"
- from_port   = 443
- to_port     = 443
- protocol    = "tcp"
- cidr_blocks  = ["0.0.0.0/0"]
+  type        = "ingress"
+  description = "ingress rule for blog_https_in"
+  from_port   = 443
+  to_port     = 443
+  protocol    = "tcp"
+  cidr_blocks  = ["0.0.0.0/0"]
 
-security_Group_id = aws_security_group.blog.id
+  security_group_id = aws_security_group.blog.id
 }
 
 resource "aws_security_group_rule" "blog_everything_out" {
-
  type        = "egress"
  description = "Outbound rule for blog"
  from_port   = 0
@@ -65,5 +65,5 @@ resource "aws_security_group_rule" "blog_everything_out" {
  protocol    = "-1"
  cidr_blocks  = ["0.0.0.0/0"]
 
-security_group_ids = aws_security_group.blog.id
+ security_group_ids = aws_security_group.blog.id
 }
