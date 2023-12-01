@@ -40,9 +40,9 @@ module "autoscaling" {
   version = "7.3.1"
   name = "blog"
   min_size = 1
-  Max_size = 2
+  max_size = 2
 
-  vpn_zone_identifier = module.blob_vpc.public_subnets
+  vpc_zone_identifier = module.blob_vpc.public_subnets
   target_group_arns   = module.blog_arns.target_group_arns
   security_group      = [module.blog_sg.security_group_id]
 
